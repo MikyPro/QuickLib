@@ -25,7 +25,8 @@ public class TestPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        if(Title.sendTitle(e.getPlayer(), "§cHello", "&cWorld", 5, 20, 5)) {
+        Title title = new Title();
+        if(title.sendTitle(e.getPlayer(), "§cHello", "&cWorld", 5, 20, 5)) {
             System.out.println("Can send title");
         } else {
             System.out.println("Can't send title");
