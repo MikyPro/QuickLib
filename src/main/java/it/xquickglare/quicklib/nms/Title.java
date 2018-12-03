@@ -1,5 +1,7 @@
 package it.xquickglare.quicklib.nms;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -9,15 +11,24 @@ public class Title {
 
     private final NMSUtils nmsUtils;
 
-    public Title(){
+    @Getter @Setter private String title;
+    @Getter @Setter private String subtitle;
+    @Getter @Setter private int fadeInTime;
+    @Getter @Setter private int fadeOutTime;
+    @Getter @Setter private int showTime;
+    
+    public Title(String title, String subtitle, int fadeInTime, int fadeOutTime, int showTime){
         nmsUtils = new NMSUtils();
+        
+        this.title = ChatColor.translateAlternateColorCodes('&', title);
+        this.subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
+        this.fadeInTime = fadeInTime;
+        this.fadeOutTime = fadeOutTime;
+        this.showTime = showTime;
     }
 
-    public boolean sendTitle(Player player, String title, String subtitle, int fadeInTime, int showTime, int fadeOutTime) {
+    public boolean sendTitle(Player player) {
         String version = nmsUtils.getServerVersion();
-
-        title = ChatColor.translateAlternateColorCodes('&', title);
-        subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
 
        if(version.startsWith("v1_12")){
            player.sendTitle(title, subtitle, fadeInTime, showTime, fadeOutTime);
