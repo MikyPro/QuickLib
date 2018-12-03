@@ -1,0 +1,37 @@
+{
+  "string": "Test String",
+  "stringList": [
+    "List",
+    "of",
+    "Strings"
+  ],
+  
+  "boolean": true,
+  
+  "integer": 5,
+  "integerList": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  
+  "double": 5.55,
+  "doubleList": [
+    1.11,
+    2.22,
+    3.33,
+    4.44,
+    5.55
+  ],
+
+  "float": 5.55,
+  "floatList": [
+    1.11,
+    2.22,
+    3.33,
+    4.44,
+    5.55
+  ]
+}

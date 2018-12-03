@@ -10,7 +10,7 @@ import java.util.List;
 
 public class YAMLConfiguration extends Configuration{
     
-    private File file;
+    private final File file;
     private FileConfiguration configuration;
     
     public YAMLConfiguration(String name, QuickLib lib) {
@@ -36,8 +36,9 @@ public class YAMLConfiguration extends Configuration{
     }
 
     @Override
-    public void reload() {
+    public boolean reload() {
         configuration = YamlConfiguration.loadConfiguration(file);
+        return true;
     }
 
     @Override

@@ -26,8 +26,5 @@
             <directory>${project.build.outputDirectory}</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
-        <fileSet>
-            <directory>${project.build.}</directory>
-        </fileSet>
     </fileSets>
 </assembly>

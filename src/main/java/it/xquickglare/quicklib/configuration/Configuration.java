@@ -18,8 +18,10 @@ public abstract class Configuration {
 
     /**
      * The method for reload all values from the configuration file
+     * 
+     * @return True if the configuration was successfully reloaded
      */
-    public abstract void reload();
+    public abstract boolean reload();
 
     /**
      * The method for set a value in the configuration file
