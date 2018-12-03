@@ -25,11 +25,15 @@ public class CommandHandler implements CommandExecutor {
                 sender.sendMessage(command.getPermissionMessage());
                 return false;
             }
+            boolean senderAllowed = false;
             for(Class<? extends CommandSender> type : command.getAllowedSenders()) {
-                if(!sender.getClass().isAssignableFrom(type)) {
-                    sender.sendMessage(command.getInvalidSenderTypeMessage());
-                    return false;
+                if(sender.getClass().isAssignableFrom(type)) {
+                    senderAllowed = true;
                 }
+            }
+            if(!senderAllowed) {
+                sender.sendMessage(command.getInvalidSenderTypeMessage());
+                return false;
             }
             if(args.length > 0) {
                 for(SubCommand subCommand : command.getSubCommands()) {
@@ -42,11 +46,15 @@ public class CommandHandler implements CommandExecutor {
                             sender.sendMessage(subCommand.getPermissionMessage());
                             return false;
                         }
+                        boolean subCommandSenderAllowed = false;
                         for(Class<? extends CommandSender> type : subCommand.getAllowedSenders()) {
-                            if(!sender.getClass().isAssignableFrom(type)) {
-                                sender.sendMessage(subCommand.getInvalidSenderTypeMessage());
-                                return false;
+                            if(sender.getClass().isAssignableFrom(type)) {
+                                subCommandSenderAllowed = true;
                             }
+                        }
+                        if(!subCommandSenderAllowed) {
+                            sender.sendMessage(subCommand.getInvalidSenderTypeMessage());
+                            return false;
                         }
                         subCommand.onCommand(sender, args);
                         return true;
