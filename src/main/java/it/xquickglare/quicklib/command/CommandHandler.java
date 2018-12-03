@@ -48,6 +48,8 @@ public class CommandHandler implements CommandExecutor {
                                 return false;
                             }
                         }
+                        subCommand.onCommand(sender, args);
+                        return true;
                     }
                 }
             }
