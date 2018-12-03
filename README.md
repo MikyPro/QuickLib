@@ -5,15 +5,15 @@ How to include QuickLib in your project:
 ## Maven
 
 ```xml
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+  <repository>
+	  <id>jitpack.io</id>
+	  <url>https://jitpack.io</url>
+  </repository>
   <dependency>
 	  <groupId>com.github.QuickGlare</groupId>
 	  <artifactId>QuickLib</artifactId>
 	  <version>VERSION ARE YOU USING<version>
-	</dependency>
+  </dependency>
 ```
 
 ## Gradle
