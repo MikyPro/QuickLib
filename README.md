@@ -1,4 +1,4 @@
-# QuickLib
+# QuickLib [![CircleCI (all branches)](https://img.shields.io/circleci/project/github/QuickGlare/QuickLib.svg)](https://circleci.com/gh/QuickGlare/QuickLib)
 
 How to include QuickLib in your project:
 
