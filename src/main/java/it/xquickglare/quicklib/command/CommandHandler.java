@@ -32,7 +32,7 @@ public class CommandHandler implements CommandExecutor {
                 }
             }
             if(command instanceof SubCommand) {
-                if(args.length == 0 || !args[0].equals(((SubCommand) command).getSubname())) {
+                if(args.length == 0 || !args[0].equalsIgnoreCase(((SubCommand) command).getSubname())) {
                     return false;
                 }
             }
