@@ -12,7 +12,7 @@ How to include QuickLib in your project:
   <dependency>
 	  <groupId>com.github.QuickGlare</groupId>
 	  <artifactId>QuickLib</artifactId>
-	  <version>VERSION ARE YOU USING<version>
+	  <version>VERSION YOU ARE USING</version>
   </dependency>
 ```
 
@@ -25,16 +25,16 @@ How to include QuickLib in your project:
   }
   
   dependencies {
-    implementation 'com.github.QuickGlare:QuickLib:VERSION ARE YOU USING'
+    implementation 'com.github.QuickGlare:QuickLib:VERSION YOU ARE USING'
   }
 ```
 
 ## TO-DO List
-* Configurations API(JSON and YAML)
+* Configurations API (JSON and YAML)
 * Messages
 * Logs
 * Commands API
 * Title and ActionBar
-* Actions(for menus) 
+* Actions (for menus) 
 * Menus
 * Scoreboard
