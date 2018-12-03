@@ -1,30 +1,35 @@
 package it.xquickglare.quicklib.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.bukkit.command.CommandSender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Gio
  */
-@AllArgsConstructor
-@RequiredArgsConstructor
-public abstract class Command {
+@ToString
+public abstract class Command extends AbstractCommand {
 
-    @Getter @NonNull private String name;
-    @Getter private String permission;
-    @Getter private String permissionMessage;
-    @Getter private String invalidArgsMessage;
-    @Getter private String invalidSenderTypeMessage;
-    @Getter private Class<CommandSender>[] allowedSenders;
-    @Getter private boolean ignoreCase = true;
-    @Getter private int minArgsLength;
+    @Getter private List<SubCommand> subCommands;
 
-    @Override
-    public String toString() {
-        return "Command " + name;
+    public Command(String name, String permission, String permissionMessage, String invalidArgsMessage, String invalidSenderTypeMessage, Class<CommandSender>[] allowedSenders, boolean ignoreCase, int minArgsLength, List<SubCommand> subCommands) {
+        super(name,
+                permission,
+                permissionMessage,
+                invalidArgsMessage,
+                invalidSenderTypeMessage,
+                allowedSenders,
+                ignoreCase,
+                minArgsLength);
+        this.subCommands = subCommands;
+    }
+
+    public Command(String name, String permission) {
+        super(name, permission);
+        this.subCommands = new ArrayList<>();
     }
 
     /**
@@ -43,9 +48,10 @@ public abstract class Command {
     }
 
     /**
-     * Method called every time the command is called
-     * @param sender Player or console that typed the command
-     * @param args Command arguments
+     * Adds an additional sub command
+     * @param subCommand Sub command
      */
-    public abstract void onCommand(CommandSender sender, String[] args);
+    public void addSubCommand(SubCommand subCommand) {
+        subCommands.add(subCommand);
+    }
 }

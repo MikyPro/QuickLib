@@ -25,15 +25,30 @@ public class CommandHandler implements CommandExecutor {
                 sender.sendMessage(command.getPermissionMessage());
                 return false;
             }
-            for(Class<CommandSender> type : command.getAllowedSenders()) {
+            for(Class<? extends CommandSender> type : command.getAllowedSenders()) {
                 if(!sender.getClass().isAssignableFrom(type)) {
                     sender.sendMessage(command.getInvalidSenderTypeMessage());
                     return false;
                 }
             }
-            if(command instanceof SubCommand) {
-                if(args.length == 0 || !args[0].equalsIgnoreCase(((SubCommand) command).getSubname())) {
-                    return false;
+            if(args.length > 0) {
+                for(SubCommand subCommand : command.getSubCommands()) {
+                    if(subCommand.getName().equalsIgnoreCase(args[0])) {
+                        if(args.length < subCommand.getMinArgsLength()) {
+                            sender.sendMessage(subCommand.getInvalidArgsMessage());
+                            return false;
+                        }
+                        if(!sender.hasPermission(subCommand.getPermission())) {
+                            sender.sendMessage(subCommand.getPermissionMessage());
+                            return false;
+                        }
+                        for(Class<? extends CommandSender> type : subCommand.getAllowedSenders()) {
+                            if(!sender.getClass().isAssignableFrom(type)) {
+                                sender.sendMessage(subCommand.getInvalidSenderTypeMessage());
+                                return false;
+                            }
+                        }
+                    }
                 }
             }
             command.onCommand(sender, args);
