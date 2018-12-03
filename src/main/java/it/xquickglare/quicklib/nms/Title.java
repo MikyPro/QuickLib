@@ -1,6 +1,5 @@
-package it.xquickglare.quicklib.nms.title;
+package it.xquickglare.quicklib.nms;
 
-import it.xquickglare.quicklib.nms.NMSUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

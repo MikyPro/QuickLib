@@ -3,7 +3,7 @@ package it.xquickglare.quicklibtest;
 import it.xquickglare.quicklib.QuickLib;
 import it.xquickglare.quicklib.configuration.JSONConfiguration;
 import it.xquickglare.quicklib.configuration.YAMLConfiguration;
-import it.xquickglare.quicklib.nms.title.Title;
+import it.xquickglare.quicklib.nms.Title;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -16,16 +16,20 @@ public class TestPlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         quickLib = new QuickLib(this);
+
         getServer().getPluginManager().registerEvents(this, this);
+
         testYAMLConfig();
         testJSONConfig();
-        System.out.println(5);
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        System.out.println("e");
-        Title.sendTitle(e.getPlayer(), "§cHello", "&cWorld", 5, 20, 5);
+        if(Title.sendTitle(e.getPlayer(), "§cHello", "&cWorld", 5, 20, 5)) {
+            System.out.println("Can send title");
+        } else {
+            System.out.println("Can't send title");
+        }
     }
     
     private void testYAMLConfig() {
