@@ -1,4 +1,4 @@
-package it.xquickglare.quicklib.nms.title;
+package it.xquickglare.quicklib.nms;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
