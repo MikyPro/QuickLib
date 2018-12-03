@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+# Debug Files
+/testServer
+
 # IntelliJ project files
 .idea
 target
