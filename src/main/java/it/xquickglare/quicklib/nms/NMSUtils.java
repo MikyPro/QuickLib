@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 public class NMSUtils {
 
-    public void sendPacket(Player player, Object packet) {
+    public static void sendPacket(Player player, Object packet) {
         try {
             Object handle = player.getClass().getMethod("getHandle").invoke(player);
             Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
@@ -15,7 +15,7 @@ public class NMSUtils {
         }
     }
 
-    public Class<?> getNMSClass(String name) {
+    public static Class<?> getNMSClass(String name) {
         try {
             return Class.forName("net.minecraft.server" + getServerVersion() + "." + name);
         } catch(ClassNotFoundException ex) {
@@ -24,7 +24,13 @@ public class NMSUtils {
         return null;
     }
 
-    public String getServerVersion() {
+    public static boolean isVersionBigger(float check) {
+        return check < Float.valueOf(
+                getServerVersion().substring(1, getServerVersion().length() - 3).replace("_", ".")
+        );
+    }
+
+    public static String getServerVersion() {
         return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
     }
 }
