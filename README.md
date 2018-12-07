@@ -31,7 +31,7 @@ How to include QuickLib in your project:
 
 ## TO-DO List
 * Configurations API (JSON and YAML) - **WIP**
-* Messages
+* Messages - **WIP**
 * Logs
 * Commands API - **WIP**
 * Title and ActionBar - **WIP**
