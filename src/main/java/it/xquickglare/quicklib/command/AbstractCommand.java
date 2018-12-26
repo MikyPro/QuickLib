@@ -6,8 +6,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.entity.Player;
 
 /**
  * @author Gio
@@ -22,7 +20,7 @@ abstract class AbstractCommand {
     @Getter protected String invalidArgsMessage = ChatColor.RED + "Invalid arguments.";
     @Getter protected String invalidSenderTypeMessage = ChatColor.RED + "Invalid sender type.";
     @SuppressWarnings("unchecked")
-    @Getter protected Class<? extends CommandSender>[] allowedSenders = new Class[] {Player.class, ConsoleCommandSender.class};
+    @Getter protected CommandSenderType[] allowedSenders = CommandSenderType.values();
     @Getter protected boolean ignoreCase = true;
     @Getter protected int minArgsLength;
 

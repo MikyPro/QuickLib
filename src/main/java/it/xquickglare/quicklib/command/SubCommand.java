@@ -1,7 +1,6 @@
 package it.xquickglare.quicklib.command;
 
-import lombok.*;
-import org.bukkit.command.CommandSender;
+import lombok.ToString;
 
 /**
  * @author Gio
@@ -9,7 +8,7 @@ import org.bukkit.command.CommandSender;
 @ToString
 public abstract class SubCommand extends AbstractCommand {
 
-    public SubCommand(String name, String permission, String permissionMessage, String invalidArgsMessage, String invalidSenderTypeMessage, Class<CommandSender>[] allowedSenders, boolean ignoreCase, int minArgsLength) {
+    public SubCommand(String name, String permission, String permissionMessage, String invalidArgsMessage, String invalidSenderTypeMessage, CommandSenderType[] allowedSenders, boolean ignoreCase, int minArgsLength) {
         super(name,
                 permission,
                 permissionMessage,

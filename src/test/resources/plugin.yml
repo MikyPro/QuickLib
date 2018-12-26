@@ -2,3 +2,6 @@ name: QuickLibTestPlugin
 version: 1.0
 author: xQuickGlare
 main: it.xquickglare.quicklibtest.TestPlugin
+
+commands:
+  test:

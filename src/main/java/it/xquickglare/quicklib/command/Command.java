@@ -2,7 +2,6 @@ package it.xquickglare.quicklib.command;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public abstract class Command extends AbstractCommand {
 
     @Getter private List<SubCommand> subCommands;
 
-    public Command(String name, String permission, String permissionMessage, String invalidArgsMessage, String invalidSenderTypeMessage, Class<CommandSender>[] allowedSenders, boolean ignoreCase, int minArgsLength, List<SubCommand> subCommands) {
+    public Command(String name, String permission, String permissionMessage, String invalidArgsMessage, String invalidSenderTypeMessage, CommandSenderType[] allowedSenders, boolean ignoreCase, int minArgsLength, List<SubCommand> subCommands) {
         super(name,
                 permission,
                 permissionMessage,

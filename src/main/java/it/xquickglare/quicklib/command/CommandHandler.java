@@ -5,6 +5,8 @@ import lombok.Getter;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * @author Gio
@@ -26,8 +28,9 @@ public class CommandHandler implements CommandExecutor {
                 return false;
             }
             boolean senderAllowed = false;
-            for(Class<? extends CommandSender> type : command.getAllowedSenders()) {
-                if(sender.getClass().isAssignableFrom(type)) {
+            for(CommandSenderType type : command.getAllowedSenders()) {
+                if((type == CommandSenderType.PLAYER && sender instanceof Player)
+                        || (type == CommandSenderType.CONSOLE && sender instanceof ConsoleCommandSender)) {
                     senderAllowed = true;
                 }
             }
@@ -47,8 +50,9 @@ public class CommandHandler implements CommandExecutor {
                             return false;
                         }
                         boolean subCommandSenderAllowed = false;
-                        for(Class<? extends CommandSender> type : subCommand.getAllowedSenders()) {
-                            if(sender.getClass().isAssignableFrom(type)) {
+                        for(CommandSenderType type : command.getAllowedSenders()) {
+                            if((type == CommandSenderType.PLAYER && sender instanceof Player)
+                                    || (type == CommandSenderType.CONSOLE && sender instanceof ConsoleCommandSender)) {
                                 subCommandSenderAllowed = true;
                             }
                         }

@@ -19,10 +19,12 @@ public class TestPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         quickLib = new QuickLib(this);
 
-        getServer().getPluginManager().registerEvents(this, this);
+        quickLib.register(new TestCommand());
+
+        /*getServer().getPluginManager().registerEvents(this, this);
 
         testYAMLConfig();
-        testJSONConfig();
+        testJSONConfig();*/
     }
 
     @EventHandler
