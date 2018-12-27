@@ -1,9 +1,6 @@
 package it.xquickglare.quicklib.command;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -12,6 +9,7 @@ import org.bukkit.command.CommandSender;
  */
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Setter
 abstract class AbstractCommand {
 
     @Getter @NonNull private String name;
