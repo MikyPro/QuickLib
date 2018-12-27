@@ -38,7 +38,7 @@ public class CommandHandler implements CommandExecutor {
                 sender.sendMessage(command.getInvalidSenderTypeMessage());
                 return false;
             }
-            if(args.length > 0) {
+            if (args.length > 0 && command.getSubCommands() != null) {
                 for(SubCommand subCommand : command.getSubCommands()) {
                     if(subCommand.getName().equalsIgnoreCase(args[0])) {
                         if(args.length < subCommand.getMinArgsLength()) {
