@@ -23,6 +23,9 @@ public class Hologram implements Listener {
         location = armorStand.getLocation();
     }
 
+    public Hologram() {
+    }
+
     public Hologram create() {
         ArmorStand as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
 
