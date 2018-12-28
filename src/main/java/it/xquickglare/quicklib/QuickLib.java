@@ -2,6 +2,7 @@ package it.xquickglare.quicklib;
 
 import it.xquickglare.quicklib.command.Command;
 import it.xquickglare.quicklib.command.CommandHandler;
+import it.xquickglare.quicklib.utils.Hologram;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,7 +18,7 @@ public class QuickLib {
      * Method called once the plugin is loaded and enabled
      */
     public void enable() {
-        
+        plugin.getServer().getPluginManager().registerEvents(new Hologram(), plugin);
     }
 
     /**
