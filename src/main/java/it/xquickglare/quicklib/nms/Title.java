@@ -7,8 +7,8 @@ import java.lang.reflect.Constructor;
 
 public class Title {
 
-    private final String title;
-    private final String subtitle;
+    private String title;
+    private String subtitle;
     private final int fadeInTime;
     private final int fadeOutTime;
     private final int showTime;
@@ -31,14 +31,13 @@ public class Title {
             return false;
         } else {
             try {
-                Object chatTitle = NMSUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + title + "\"}");
-                Constructor<?> titleConstructor = NMSUtils.getNMSClass("PacketPlayOutTitle").getConstructor(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSUtils.getNMSClass("IChatBaseComponent"), int.class, int.class, int.class);
-                Object titlePacket = titleConstructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("TITLE").get(null), chatTitle, fadeInTime, showTime, fadeOutTime);
+                Constructor<?> constructor = NMSUtils.getNMSClass("PacketPlayOutTitle").getConstructor(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSUtils.getNMSClass("IChatBaseComponent"), int.class, int.class, int.class);
 
+                Object chatTitle = NMSUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + title + "\"}");
+                Object titlePacket = constructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("TITLE").get(null), chatTitle, fadeInTime, showTime, fadeOutTime);
 
                 Object chatSubtitle = NMSUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + subtitle + "\"}");
-                Constructor<?> subtitleConstructor = NMSUtils.getNMSClass("PacketPlayOutTitle").getConstructor(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSUtils.getNMSClass("IChatBaseComponent"), int.class, int.class, int.class);
-                Object subtitlePacket = subtitleConstructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("SUBTITLE").get(null), chatSubtitle, fadeInTime, showTime, fadeOutTime);
+                Object subtitlePacket = constructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("SUBTITLE").get(null), chatSubtitle, fadeInTime, showTime, fadeOutTime);
 
                 NMSUtils.sendPacket(player, titlePacket);
                 NMSUtils.sendPacket(player, subtitlePacket);
@@ -50,8 +49,8 @@ public class Title {
     }
 
     public Title format(char colorCode) {
-        ChatColor.translateAlternateColorCodes(colorCode, title);
-        ChatColor.translateAlternateColorCodes(colorCode, subtitle);
+        title = ChatColor.translateAlternateColorCodes(colorCode, title);
+        subtitle = ChatColor.translateAlternateColorCodes(colorCode, subtitle);
         return this;
     }
 }

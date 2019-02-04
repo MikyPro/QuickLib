@@ -24,11 +24,9 @@ public class ActionBar {
         } else {
             try {
                 String nmsVersion = NMSUtils.getServerVersion();
-                Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsVersion + ".entity.CraftPlayer");
-                Object craftPlayer = craftPlayerClass.cast(player);
 
                 Class<?> ppoc = Class.forName("net.minecraft.server." + nmsVersion + ".PacketPlayOutChat");
-                Class<?> packet = Class.forName("net.minecraft.server." + nmsVersion + ".Packet");
+
                 Object packetPlayOutChat;
                 Class<?> chat = Class.forName("net.minecraft.server." + nmsVersion + (nmsVersion.equalsIgnoreCase("v1_8_R1") ? ".ChatSerializer" : ".ChatComponentText"));
                 Class<?> chatBaseComponent = Class.forName("net.minecraft.server." + nmsVersion + ".IChatBaseComponent");
