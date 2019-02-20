@@ -34,6 +34,14 @@ public class MultiLineMessage {
         return this;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        multiLineMessage.forEach(builder::append);
+        
+        return builder.toString();
+    }
+
     public MultiLineMessage format(char colorCode) {
         multiLineMessage.stream().map(
                 msg -> ChatColor.translateAlternateColorCodes(colorCode, msg)
