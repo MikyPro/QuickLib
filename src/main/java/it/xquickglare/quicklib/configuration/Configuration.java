@@ -1,5 +1,7 @@
 package it.xquickglare.quicklib.configuration;
 
+import it.xquickglare.quicklib.utils.Message;
+import it.xquickglare.quicklib.utils.MultiLineMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
@@ -149,5 +151,25 @@ public abstract class Configuration {
                 location.getPitch();
         
         set(path, locationString);
+    }
+
+    /**
+     * The method for get a message from the configuration file
+     * 
+     * @param path The path of the message
+     * @return The parsed message
+     */
+    public Message getMessage(String path) {
+        return new Message(getString(path));
+    }
+
+    /**
+     * The method for get a multiline message from the configuration file
+     * 
+     * @param path The path of the message
+     * @return The parsed message
+     */
+    public MultiLineMessage getMultiLineMessage(String path) {
+        return new MultiLineMessage(getStringList(path));
     }
 }
