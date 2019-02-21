@@ -1,8 +1,8 @@
 package it.xquickglare.quicklib.configuration;
 
+import it.xquickglare.quicklib.utils.LocationSerialize;
 import it.xquickglare.quicklib.utils.Message;
 import it.xquickglare.quicklib.utils.MultiLineMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 import java.util.List;
@@ -120,19 +120,7 @@ public abstract class Configuration {
      * @return The Location from the configuration file
      */
     public Location getLocation(String path) {
-        String[] splitted = path.split(":");
-        
-        if(splitted.length < 6)
-            return null;
-
-        return new Location(
-                Bukkit.getWorld(splitted[0]),
-                Double.parseDouble(splitted[1]),
-                Double.parseDouble(splitted[2]),
-                Double.parseDouble(splitted[3]),
-                Float.parseFloat(splitted[4]),
-                Float.parseFloat(splitted[5])
-        );
+        return LocationSerialize.deserialize(getString(path));
     }
 
     /**
@@ -142,15 +130,7 @@ public abstract class Configuration {
      * @param location The Location
      */
     public void setLocation(String path, Location location) {
-        String locationString = 
-                location.getWorld().getName() + ":" +
-                location.getX() + ":" +
-                location.getY() + ":" +
-                location.getZ() + ":" +
-                location.getYaw() + ":" +
-                location.getPitch();
-        
-        set(path, locationString);
+        set(path, LocationSerialize.serialize(location));
     }
 
     /**
