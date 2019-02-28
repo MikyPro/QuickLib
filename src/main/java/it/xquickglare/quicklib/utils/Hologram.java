@@ -4,55 +4,53 @@ import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+
+@Getter
 public class Hologram implements Listener {
 
-    @Getter
-    private String text;
-    @Getter
     private Location location;
-    @Getter
-    private ArmorStand armorStand;
+    private Map<String, ArmorStand> armorstands;
 
-    public Hologram(ArmorStand armorStand) {
-        this.armorStand = armorStand;
-        text = armorStand.getCustomName();
-        location = armorStand.getLocation();
-    }
+    public Hologram(Location location) {
+        this.location = location;
+        armorstands = new HashMap<>();
 
-    public Hologram() {
+        armorstands.put("Test", null);
+        armorstands.put("Another test", null);
     }
 
     public Hologram create() {
-        ArmorStand as = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+        double yLoc = 0;
+        for (String text : armorstands.keySet()) {
+            ArmorStand as = (ArmorStand) location.getWorld().spawnEntity(location.add(0, yLoc, 0), EntityType.ARMOR_STAND);
 
-        as.setGravity(false);
-        as.setCanPickupItems(false);
-        as.setCustomName(text);
-        as.setCustomNameVisible(true);
-        as.setVisible(false);
+            as.setCustomName(text);
+            as.setGravity(false);
+            as.setInvulnerable(true);
+            as.setCanPickupItems(false);
+            as.setCustomNameVisible(true);
+            as.setVisible(false);
 
-        armorStand = as;
+            armorstands.put(text, as);
+            yLoc += 0.2;
+        }
         return this;
     }
 
     public Hologram delete() {
-        armorStand.remove();
+        armorstands.forEach((text, entity) -> {
+            if(entity != null)
+                entity.remove();
+        });
         return this;
     }
 
-    @EventHandler
-    public void manipulate(PlayerArmorStandManipulateEvent e) {
-        if (!e.getRightClicked().isVisible()) {
-            e.setCancelled(true);
-        }
-    }
-
-    public Hologram setText(String text) {
-        this.text = text;
+    public Hologram addText(String text) {
+        armorstands.put(text, null);
         return this;
     }
 

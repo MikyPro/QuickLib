@@ -5,6 +5,7 @@ import it.xquickglare.quicklib.configuration.JSONConfiguration;
 import it.xquickglare.quicklib.configuration.YAMLConfiguration;
 import it.xquickglare.quicklib.nms.ActionBar;
 import it.xquickglare.quicklib.nms.Title;
+import it.xquickglare.quicklib.utils.Hologram;
 import it.xquickglare.quicklib.utils.Message;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,10 +22,10 @@ public class TestPlugin extends JavaPlugin implements Listener {
 
         quickLib.register(new TestCommand());
 
-        /*getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(this, this);
 
         testYAMLConfig();
-        testJSONConfig();*/
+        testJSONConfig();
     }
 
     @EventHandler
@@ -37,6 +38,9 @@ public class TestPlugin extends JavaPlugin implements Listener {
 
         Message message = new Message("Hello World");
         message.send(e.getPlayer());
+
+        Hologram hd = new Hologram(e.getPlayer().getLocation().add(0, 3, 0));
+        hd.create();
     }
     
     private void testYAMLConfig() {

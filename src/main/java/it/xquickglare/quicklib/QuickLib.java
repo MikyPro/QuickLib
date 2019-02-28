@@ -18,7 +18,7 @@ public class QuickLib {
      * Method called once the plugin is loaded and enabled
      */
     public void enable() {
-        plugin.getServer().getPluginManager().registerEvents(new Hologram(), plugin);
+        //plugin.getServer().getPluginManager().registerEvents(new Hologram(), plugin);
     }
 
     /**
