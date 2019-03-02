@@ -51,6 +51,10 @@ public class Hologram {
         return this;
     }
 
+    public int getNumberOfLines() {
+        return lines.size();
+    }
+
     public Hologram clearText() {
         lines.forEach(HologramLine::despawn);
         lines.clear();
