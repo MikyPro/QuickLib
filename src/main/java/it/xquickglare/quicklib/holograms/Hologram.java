@@ -44,6 +44,13 @@ public class Hologram {
         return this;
     }
 
+    public Hologram setLine(int i, String text) {
+        HologramLine line = lines.get(i);
+        line.setText(text);
+
+        return this;
+    }
+
     public Hologram clearText() {
         lines.forEach(HologramLine::despawn);
         lines.clear();

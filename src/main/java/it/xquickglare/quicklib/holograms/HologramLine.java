@@ -36,6 +36,8 @@ public class HologramLine {
 
     public void setText(String text) {
         this.text = text;
+        if(as != null)
+            as.setCustomName(text);
     }
 
 }
