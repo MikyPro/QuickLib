@@ -52,7 +52,7 @@ public class MultiLineMessage {
     }
 
     public MultiLineMessage format(char colorCode) {
-        multiLineMessage.stream().map(
+        multiLineMessage = multiLineMessage.stream().map(
                 msg -> ChatColor.translateAlternateColorCodes(colorCode, msg)
         ).collect(Collectors.toList());
         return this;
