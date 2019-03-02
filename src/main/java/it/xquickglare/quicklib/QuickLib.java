@@ -2,7 +2,6 @@ package it.xquickglare.quicklib;
 
 import it.xquickglare.quicklib.command.Command;
 import it.xquickglare.quicklib.command.CommandHandler;
-import it.xquickglare.quicklib.utils.Hologram;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
