@@ -30,8 +30,9 @@ public class Message {
         return this;
     }
 
-    public void addPlaceholder(String placeholder, String value) {
+    public Message addPlaceholder(String placeholder, String value) {
         message = message.replaceAll("%" + placeholder, value);
+        return this;
     }
 
     public Message format(char colorCode) {

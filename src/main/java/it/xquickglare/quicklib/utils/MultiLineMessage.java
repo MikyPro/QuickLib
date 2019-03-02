@@ -34,11 +34,13 @@ public class MultiLineMessage {
         return this;
     }
 
-    public void addPlaceholder(String placeholder, String value) {
+    public MultiLineMessage addPlaceholder(String placeholder, String value) {
         for (int i = 0; i < multiLineMessage.size(); i++) {
             String s = multiLineMessage.get(i).replaceAll("%" + placeholder, value);
             multiLineMessage.set(i, s);
         }
+
+        return this;
     }
 
     @Override
