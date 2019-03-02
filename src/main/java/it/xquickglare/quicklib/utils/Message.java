@@ -30,6 +30,10 @@ public class Message {
         return this;
     }
 
+    public void addPlaceholder(String placeholder, String value) {
+        message = message.replaceAll("%" + placeholder, value);
+    }
+
     public Message format(char colorCode) {
         message = ChatColor.translateAlternateColorCodes(colorCode, message);
         return this;
