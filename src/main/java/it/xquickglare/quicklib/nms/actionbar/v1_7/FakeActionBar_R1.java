@@ -1,6 +1,5 @@
 package it.xquickglare.quicklib.nms.actionbar.v1_7;
 
-import it.xquickglare.quicklib.QuickLib;
 import net.minecraft.server.v1_7_R1.*;
 import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;

@@ -1,5 +1,8 @@
 package it.xquickglare.quicklib.nms;
 
+import it.xquickglare.quicklib.nms.title.v1_8.Title_R1;
+import it.xquickglare.quicklib.nms.title.v1_8.Title_R2;
+import it.xquickglare.quicklib.nms.title.v1_8.Title_R3;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -32,14 +35,20 @@ public class Title {
             return true;
         }
 
-        switch (version) {
-            case "v1_8_R1": new it.xquickglare.quicklib.nms.title.v1_8.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_8_R2": new it.xquickglare.quicklib.nms.title.v1_8.Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_8_R3": new it.xquickglare.quicklib.nms.title.v1_8.Title_R3(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_9_R1": new it.xquickglare.quicklib.nms.title.v1_9.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_9_R2": new it.xquickglare.quicklib.nms.title.v1_9.Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_10_R1": new it.xquickglare.quicklib.nms.title.v1_10.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
-            case "v1_11_R1": new it.xquickglare.quicklib.nms.title.v1_11.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+        if ("v1_8_R1".equals(version)) {
+            new Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_8_R2".equals(version)) {
+            new Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_8_R3".equals(version)) {
+            new Title_R3(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_9_R1".equals(version)) {
+            new it.xquickglare.quicklib.nms.title.v1_9.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_9_R2".equals(version)) {
+            new it.xquickglare.quicklib.nms.title.v1_9.Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_10_R1".equals(version)) {
+            new it.xquickglare.quicklib.nms.title.v1_10.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
+        } else if ("v1_11_R1".equals(version)) {
+            new it.xquickglare.quicklib.nms.title.v1_11.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player);
         }
         return true;
     }

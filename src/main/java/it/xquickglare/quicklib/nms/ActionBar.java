@@ -1,5 +1,8 @@
 package it.xquickglare.quicklib.nms;
 
+import it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R1;
+import it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R2;
+import it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R3;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -27,12 +30,16 @@ public class ActionBar {
             return true;
         }
 
-        switch (version) {
-            case "v1_8_R1": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R1(player, message); break;
-            case "v1_8_R2": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R2(player, message); break;
-            case "v1_8_R3": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R3(player, message); break;
-            case "v1_9_R1": new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R1(player, message); break;
-            case "v1_9_R2": new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R2(player, message); break;
+        if ("v1_8_R1".equals(version)) {
+            new ActionBar_R1(player, message);
+        } else if ("v1_8_R2".equals(version)) {
+            new ActionBar_R2(player, message);
+        } else if ("v1_8_R3".equals(version)) {
+            new ActionBar_R3(player, message);
+        } else if ("v1_9_R1".equals(version)) {
+            new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R1(player, message);
+        } else if ("v1_9_R2".equals(version)) {
+            new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R2(player, message);
         }
         return true;
     }

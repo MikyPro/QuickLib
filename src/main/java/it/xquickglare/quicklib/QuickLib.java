@@ -2,7 +2,6 @@ package it.xquickglare.quicklib;
 
 import it.xquickglare.quicklib.command.Command;
 import it.xquickglare.quicklib.command.CommandHandler;
-import it.xquickglare.quicklib.nms.actionbar.v1_7.FakeActionBar_R1;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
