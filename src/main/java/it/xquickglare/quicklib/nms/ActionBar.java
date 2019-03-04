@@ -11,36 +11,28 @@ public class ActionBar {
 
     private final String message;
 
+
     public ActionBar(String message) {
         this.message = message;
     }
 
     public boolean send(Player player) {
-        if (NMSUtils.getServerVersion().startsWith("v1_7")) return false;
+
+        String version = NMSUtils.getServerVersion();
+
+        if (version.startsWith("v1_7")) return false; //new it.xquickglare.quicklib.nms.actionbar.v1_7.FakeActionBar_R1(player, message);
 
         if (NMSUtils.isVersionBigger(1.10f)) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
             return true;
-        } else {
-            try {
-                String nmsVersion = NMSUtils.getServerVersion();
+        }
 
-                Class<?> ppoc = Class.forName("net.minecraft.server." + nmsVersion + ".PacketPlayOutChat");
-
-                Object packetPlayOutChat;
-                Class<?> chat = Class.forName("net.minecraft.server." + nmsVersion + (nmsVersion.equalsIgnoreCase("v1_8_R1") ? ".ChatSerializer" : ".ChatComponentText"));
-                Class<?> chatBaseComponent = Class.forName("net.minecraft.server." + nmsVersion + ".IChatBaseComponent");
-
-                Method method = null;
-                if (nmsVersion.equalsIgnoreCase("v1_8_R1")) method = chat.getDeclaredMethod("a", String.class);
-
-                Object object = nmsVersion.equalsIgnoreCase("v1_8_R1") ? chatBaseComponent.cast(method.invoke(chat, "{'text': '" + message + "'}")) : chat.getConstructor(new Class[]{String.class}).newInstance(message);
-                packetPlayOutChat = ppoc.getConstructor(new Class[]{chatBaseComponent, Byte.TYPE}).newInstance(object, (byte) 2);
-
-                NMSUtils.sendPacket(player, packetPlayOutChat);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        switch (version) {
+            case "v1_8_R1": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R1(player, message); break;
+            case "v1_8_R2": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R2(player, message); break;
+            case "v1_8_R3": new it.xquickglare.quicklib.nms.actionbar.v1_8.ActionBar_R3(player, message); break;
+            case "v1_9_R1": new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R1(player, message); break;
+            case "v1_9_R2": new it.xquickglare.quicklib.nms.actionbar.v1_9.ActionBar_R2(player, message); break;
         }
         return true;
     }

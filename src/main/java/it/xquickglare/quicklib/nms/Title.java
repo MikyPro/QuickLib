@@ -22,28 +22,24 @@ public class Title {
     }
 
     public boolean send(Player player) {
+
         String version = NMSUtils.getServerVersion();
+
+        if (version.startsWith("v1_7")) return false;
 
         if (NMSUtils.isVersionBigger(1.12f)) {
             player.sendTitle(title, subtitle, fadeInTime, showTime, fadeOutTime);
             return true;
-        } else if (version.startsWith("v1_7")) {
-            return false;
-        } else {
-            try {
-                Constructor<?> constructor = NMSUtils.getNMSClass("PacketPlayOutTitle").getConstructor(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0], NMSUtils.getNMSClass("IChatBaseComponent"), int.class, int.class, int.class);
+        }
 
-                Object chatTitle = NMSUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + title + "\"}");
-                Object titlePacket = constructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("TITLE").get(null), chatTitle, fadeInTime, showTime, fadeOutTime);
-
-                Object chatSubtitle = NMSUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\": \"" + subtitle + "\"}");
-                Object subtitlePacket = constructor.newInstance(NMSUtils.getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("SUBTITLE").get(null), chatSubtitle, fadeInTime, showTime, fadeOutTime);
-
-                NMSUtils.sendPacket(player, titlePacket);
-                NMSUtils.sendPacket(player, subtitlePacket);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        switch (version) {
+            case "v1_8_R1": new it.xquickglare.quicklib.nms.title.v1_8.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_8_R2": new it.xquickglare.quicklib.nms.title.v1_8.Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_8_R3": new it.xquickglare.quicklib.nms.title.v1_8.Title_R3(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_9_R1": new it.xquickglare.quicklib.nms.title.v1_9.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_9_R2": new it.xquickglare.quicklib.nms.title.v1_9.Title_R2(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_10_R1": new it.xquickglare.quicklib.nms.title.v1_10.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
+            case "v1_11_R1": new it.xquickglare.quicklib.nms.title.v1_11.Title_R1(title, subtitle, fadeInTime, fadeOutTime, showTime, player); break;
         }
         return true;
     }
