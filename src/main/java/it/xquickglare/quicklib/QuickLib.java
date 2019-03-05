@@ -19,6 +19,7 @@ public class QuickLib {
     public void enable() {
         //plugin.getServer().getPluginManager().registerEvents(new Hologram(), plugin);
         //FakeActionBar_R1.plugin = plugin;
+        //SideBarManager.plugin = plugin;
     }
 
     /**
